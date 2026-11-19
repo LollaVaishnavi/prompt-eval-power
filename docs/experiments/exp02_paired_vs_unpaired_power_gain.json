@@ -1,0 +1,47 @@
+{
+  "experiment": "exp02_paired_vs_unpaired_power_gain",
+  "baseline_pass_rate": 0.85,
+  "target_drop_pp": 5.0,
+  "unpaired_n_for_5pp": 714,
+  "paired_n_for_5pp": 369,
+  "typical_reduction_pct": 48.3,
+  "high_discordance_paired_n": 1111,
+  "discordance_sweep": [
+    {
+      "discordant_rate": 0.08,
+      "paired_n": 196,
+      "unpaired_n": 714,
+      "query_reduction_pct": 72.5
+    },
+    {
+      "discordant_rate": 0.12,
+      "paired_n": 295,
+      "unpaired_n": 714,
+      "query_reduction_pct": 58.7
+    },
+    {
+      "discordant_rate": 0.15,
+      "paired_n": 369,
+      "unpaired_n": 714,
+      "query_reduction_pct": 48.3
+    },
+    {
+      "discordant_rate": 0.2,
+      "paired_n": 493,
+      "unpaired_n": 714,
+      "query_reduction_pct": 31.0
+    },
+    {
+      "discordant_rate": 0.3,
+      "paired_n": 740,
+      "unpaired_n": 714,
+      "query_reduction_pct": -3.6
+    },
+    {
+      "discordant_rate": 0.45,
+      "paired_n": 1111,
+      "unpaired_n": 714,
+      "query_reduction_pct": -55.6
+    }
+  ]
+}

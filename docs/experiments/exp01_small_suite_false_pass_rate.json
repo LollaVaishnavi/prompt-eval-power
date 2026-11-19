@@ -1,0 +1,58 @@
+{
+  "experiment": "exp01_small_suite_false_pass_rate",
+  "baseline_pass_rate": 0.85,
+  "alpha": 0.05,
+  "false_pass_rate_n30_pct": 75.2,
+  "false_pass_rate_n30_5pp_pct": 87.2,
+  "mde_at_n30_pp": 28.7,
+  "sample_sizes": [
+    {
+      "n_queries": 20,
+      "power_10pp_pct": 19.5,
+      "false_pass_rate_10pp_pct": 80.5,
+      "power_5pp_pct": 10.9,
+      "false_pass_rate_5pp_pct": 89.1,
+      "mde_80_power_pp": 36.0
+    },
+    {
+      "n_queries": 30,
+      "power_10pp_pct": 24.8,
+      "false_pass_rate_10pp_pct": 75.2,
+      "power_5pp_pct": 12.8,
+      "false_pass_rate_5pp_pct": 87.2,
+      "mde_80_power_pp": 28.7
+    },
+    {
+      "n_queries": 50,
+      "power_10pp_pct": 34.5,
+      "false_pass_rate_10pp_pct": 65.5,
+      "power_5pp_pct": 16.1,
+      "false_pass_rate_5pp_pct": 83.9,
+      "mde_80_power_pp": 21.5
+    },
+    {
+      "n_queries": 100,
+      "power_10pp_pct": 54.9,
+      "false_pass_rate_10pp_pct": 45.1,
+      "power_5pp_pct": 23.7,
+      "false_pass_rate_5pp_pct": 76.3,
+      "mde_80_power_pp": 14.6
+    },
+    {
+      "n_queries": 200,
+      "power_10pp_pct": 80.6,
+      "false_pass_rate_10pp_pct": 19.4,
+      "power_5pp_pct": 37.1,
+      "false_pass_rate_5pp_pct": 62.9,
+      "mde_80_power_pp": 9.9
+    },
+    {
+      "n_queries": 500,
+      "power_10pp_pct": 99.0,
+      "false_pass_rate_10pp_pct": 1.0,
+      "power_5pp_pct": 66.9,
+      "false_pass_rate_5pp_pct": 33.1,
+      "mde_80_power_pp": 6.0
+    }
+  ]
+}

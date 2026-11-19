@@ -1,0 +1,63 @@
+{
+  "experiment": "exp04_langgraph_prompt_regression_audit",
+  "corpus_queries": 300,
+  "v2_verdict": "REJECT_REGRESSION",
+  "v2_exit_code": 2,
+  "v2_n30_verdict": "UNDERPOWERED",
+  "v2_n30_exit_code": 3,
+  "v2_n30_deficit": 216,
+  "v2_baseline_pass_pct": 68.3,
+  "v2_candidate_pass_pct": 58.7,
+  "v2_net_delta_pp": -9.7,
+  "v2_pass_to_fail_flips": 29,
+  "v2_fail_to_pass_flips": 0,
+  "v2_p_value": 0.0,
+  "v3_verdict": "PASS",
+  "v3_fail_to_pass_flips": 5,
+  "v2_buckets": [
+    {
+      "bucket": "ambiguous_edge",
+      "n_queries": 75,
+      "baseline_pass_pct": 65.3,
+      "candidate_pass_pct": 60.0,
+      "net_delta_pp": -5.3,
+      "pass_to_fail": 4,
+      "fail_to_pass": 0,
+      "p_value": 0.0625,
+      "breached": false
+    },
+    {
+      "bucket": "direct_lookup",
+      "n_queries": 75,
+      "baseline_pass_pct": 88.0,
+      "candidate_pass_pct": 85.3,
+      "net_delta_pp": -2.7,
+      "pass_to_fail": 2,
+      "fail_to_pass": 0,
+      "p_value": 0.25,
+      "breached": false
+    },
+    {
+      "bucket": "multi_hop_policy",
+      "n_queries": 75,
+      "baseline_pass_pct": 61.3,
+      "candidate_pass_pct": 48.0,
+      "net_delta_pp": -13.3,
+      "pass_to_fail": 10,
+      "fail_to_pass": 0,
+      "p_value": 0.00098,
+      "breached": true
+    },
+    {
+      "bucket": "negation_refusal",
+      "n_queries": 75,
+      "baseline_pass_pct": 58.7,
+      "candidate_pass_pct": 41.3,
+      "net_delta_pp": -17.3,
+      "pass_to_fail": 13,
+      "fail_to_pass": 0,
+      "p_value": 0.00012,
+      "breached": true
+    }
+  ]
+}
