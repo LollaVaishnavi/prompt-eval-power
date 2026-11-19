@@ -60,7 +60,16 @@ def main() -> int:
     readme_text = doc_texts["README.md"]
 
     failures: list[str] = []
+    if "coverage_measured_pct" in metrics and "coverage_floor_pct" in metrics:
+        if float(metrics["coverage_measured_pct"]) < float(metrics["coverage_floor_pct"]):
+            failures.append(
+                f"measured coverage {metrics['coverage_measured_pct']}% below floor "
+                f"{metrics['coverage_floor_pct']}%"
+            )
+
     for key, value in metrics.items():
+        if key == "coverage_measured_pct":
+            continue
         templates = anchors.get(key, [])
         if not templates:
             failures.append(f"metric '{key}' ({value}) has no anchor phrase")

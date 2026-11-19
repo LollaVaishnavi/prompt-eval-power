@@ -1,7 +1,8 @@
 {
   "metrics": {
     "tests_total": 74,
-    "coverage_line_pct": 99.1,
+    "coverage_floor_pct": 90,
+    "coverage_measured_pct": 99.1,
     "corpus_queries": 300,
     "false_pass_rate_n30_pct": 75.2,
     "mde_at_n30_pp": 28.7,
@@ -17,8 +18,8 @@
     "tests_total": [
       "{} tests"
     ],
-    "coverage_line_pct": [
-      "{}% line coverage"
+    "coverage_floor_pct": [
+      "{}%+ line coverage"
     ],
     "corpus_queries": [
       "{} labeled queries"

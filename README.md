@@ -18,14 +18,14 @@ A pass-rate threshold on a small prompt evaluation set cannot separate a real pr
 * **Paired testing is not a universal win:** While paired McNemar cuts sample size from **714 unpaired queries** to **369 paired queries** at 15% discordance (for a 5pp drop at 80% power), a high-churn rewrite that scrambles outcomes requires **1111 queries at 45%** discordance (worse than unpaired).
 * **Refusing a fake green checkmark:** On `v1_baseline_grounded` vs `v2_concise_rewrite` across **300 labeled queries**, the full suite catches **29 pass-to-fail flips** (`exit 2`), whereas running the exact same broken prompt on `n=30` exits `3` (`UNDERPOWERED`, **deficit of 216 queries**) instead of returning green.
 
-Verified by **74 tests** at **99.1% line coverage**; every published figure is re-measured from code and verified against prose by `tools/check_numbers.py` in CI.
+Verified by **74 tests** at **90%+ line coverage**; every published figure is re-measured from code and verified against prose by `tools/check_numbers.py` in CI.
 
 ## Quickstart
 
 Prerequisites: Python 3.10+, `numpy`, `scipy`.
 
 ```bash
-git clone https://github.com/vaishnavi-lolla/prompt-eval-power.git
+git clone https://github.com/LollaVaishnavi/prompt-eval-power.git
 cd prompt-eval-power
 python3 -m pip install -e .
 
