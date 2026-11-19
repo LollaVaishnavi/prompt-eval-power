@@ -72,7 +72,7 @@ class TestStatisticalInvariants(unittest.TestCase):
             self.assertGreaterEqual(res.p_value_regression, 0.0)
             self.assertLessEqual(res.p_value_regression, 1.0)
 
-    def test_paired_mcnemar_power_equals_one_when_delta_equals_discordant_rate_at_large_n(self) -> None:
+    def test_paired_mcnemar_power_near_one_when_delta_equals_discordance(self) -> None:
         pwr = paired_mcnemar_power(200, p_discordant=0.10, delta=0.10, alpha=0.05)
         self.assertGreater(pwr, 0.99)
 
@@ -142,7 +142,7 @@ class TestPipelineAndGateBoundaries(unittest.TestCase):
                 else:
                     self.assertIsNone(outcome.failure_reason)
 
-    def test_concise_rewrite_regresses_most_severely_on_negation_and_multi_hop_buckets(self) -> None:
+    def test_concise_rewrite_regresses_most_on_negation_and_multi_hop(self) -> None:
         corpus = generate_rag_corpus(CorpusConfig(seed=20260511, query_count=300))
         g = RagStateGraph(corpus)
         base = g.evaluate_prompt("v1_baseline_grounded")
@@ -153,8 +153,12 @@ class TestPipelineAndGateBoundaries(unittest.TestCase):
             buckets=[o.bucket for o in base],
         )
         by_b = {b.bucket: b for b in decision.bucket_results}
-        self.assertGreater(by_b["negation_refusal"].pass_to_fail, by_b["direct_lookup"].pass_to_fail)
-        self.assertGreater(by_b["multi_hop_policy"].pass_to_fail, by_b["direct_lookup"].pass_to_fail)
+        self.assertGreater(
+            by_b["negation_refusal"].pass_to_fail, by_b["direct_lookup"].pass_to_fail
+        )
+        self.assertGreater(
+            by_b["multi_hop_policy"].pass_to_fail, by_b["direct_lookup"].pass_to_fail
+        )
 
     def test_gate_decision_sample_size_deficit_is_zero_whenever_n_exceeds_required(self) -> None:
         base = [True] * 260 + [False] * 40

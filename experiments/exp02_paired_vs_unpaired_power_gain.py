@@ -64,5 +64,6 @@ if __name__ == "__main__":
         )
     print(
         f"Typical (15% discordance): {data['paired_n_for_5pp']} paired queries vs "
-        f"{data['unpaired_n_for_5pp']} unpaired queries ({data['typical_reduction_pct']:.1f}% fewer)."
+        f"{data['unpaired_n_for_5pp']} unpaired queries "
+        f"({data['typical_reduction_pct']:.1f}% fewer)."
     )

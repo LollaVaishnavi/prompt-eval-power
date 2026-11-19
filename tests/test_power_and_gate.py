@@ -46,7 +46,7 @@ class TestPowerAndMDE(unittest.TestCase):
         self.assertGreaterEqual(paired_mcnemar_power(n_req, 0.15, 0.05, alpha=0.05), 0.80)
         self.assertLess(paired_mcnemar_power(n_req - 1, 0.15, 0.05, alpha=0.05), 0.80)
 
-    def test_paired_testing_requires_far_fewer_queries_than_unpaired_at_realistic_discordance(self) -> None:
+    def test_paired_testing_needs_fewer_queries_than_unpaired_at_15pct_discordance(self) -> None:
         n_unp = required_n_unpaired(0.85, 0.05, alpha=0.05, target_power=0.80)
         n_pair = required_n_paired(0.15, 0.05, alpha=0.05, target_power=0.80)
         self.assertLess(n_pair, n_unp * 0.6)

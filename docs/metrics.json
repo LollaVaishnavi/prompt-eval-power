@@ -1,0 +1,63 @@
+{
+  "metrics": {
+    "tests_total": 74,
+    "coverage_line_pct": 99.1,
+    "corpus_queries": 300,
+    "false_pass_rate_n30_pct": 75.2,
+    "mde_at_n30_pp": 28.7,
+    "unpaired_n_for_5pp": 714,
+    "paired_n_for_5pp": 369,
+    "high_discordance_paired_n": 1111,
+    "zero_failure_upper_bound_n30_pct": 9.5,
+    "required_n_for_1pct_bound": 299,
+    "prompt_regression_flips": 29,
+    "v2_n30_deficit": 216
+  },
+  "anchors": {
+    "tests_total": [
+      "{} tests"
+    ],
+    "coverage_line_pct": [
+      "{}% line coverage"
+    ],
+    "corpus_queries": [
+      "{} labeled queries"
+    ],
+    "false_pass_rate_n30_pct": [
+      "{}% false-pass rate"
+    ],
+    "mde_at_n30_pp": [
+      "{} percentage points"
+    ],
+    "unpaired_n_for_5pp": [
+      "{} unpaired queries"
+    ],
+    "paired_n_for_5pp": [
+      "{} paired queries"
+    ],
+    "high_discordance_paired_n": [
+      "{} queries at 45%"
+    ],
+    "zero_failure_upper_bound_n30_pct": [
+      "{}% upper bound"
+    ],
+    "required_n_for_1pct_bound": [
+      "{} zero-failure queries"
+    ],
+    "prompt_regression_flips": [
+      "{} pass-to-fail flips"
+    ],
+    "v2_n30_deficit": [
+      "deficit of {} queries"
+    ]
+  },
+  "checked_documents": [
+    "README.md",
+    "docs/adr/ADR-001-deterministic-rag-fixture-over-live-llm-calls.md",
+    "docs/adr/ADR-002-paired-mcnemar-over-unpaired-pass-rate-thresholds.md",
+    "docs/adr/ADR-003-resolution-floor-and-underpowered-gate-exit-code.md",
+    "docs/adr/ADR-004-stratified-query-buckets-over-flat-golden-sets.md",
+    "docs/adr/ADR-005-offline-judge-boundary-and-unmeasured-llm-variance.md"
+  ],
+  "note": "Every value here is produced by running the test suite and the four experiments."
+}

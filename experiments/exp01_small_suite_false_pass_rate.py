@@ -53,7 +53,11 @@ def run() -> dict:
 if __name__ == "__main__":
     data = run()
     print("=== Experiment 01: Small-Suite False-Pass Rate (p_base=85%, alpha=0.05) ===")
-    print(f"{'n':>5} {'Power(10pp)':>12} {'False-Pass(10pp)':>17} {'False-Pass(5pp)':>16} {'MDE@80%':>9}")
+    hdr = (
+        f"{'n':>5} {'Power(10pp)':>12} {'False-Pass(10pp)':>17} "
+        f"{'False-Pass(5pp)':>16} {'MDE@80%':>9}"
+    )
+    print(hdr)
     for r in data["sample_sizes"]:
         print(
             f"{r['n_queries']:>5} {r['power_10pp_pct']:>11.1f}% "

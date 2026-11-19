@@ -54,7 +54,7 @@ class TestCorpusAndPipeline(unittest.TestCase):
         reranked = graph.rerank_node(q, raw, limit=2)
         self.assertEqual(len(reranked), 2)
 
-    def test_concise_rewrite_causes_significant_pass_to_fail_regressions_over_baseline(self) -> None:
+    def test_concise_rewrite_causes_significant_regressions_over_baseline(self) -> None:
         corpus = generate_rag_corpus(CorpusConfig(seed=20260511, query_count=300))
         graph = RagStateGraph(corpus)
         base = graph.evaluate_prompt("v1_baseline_grounded")

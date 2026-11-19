@@ -79,7 +79,8 @@ def generate_rag_corpus(config: CorpusConfig | None = None) -> RagCorpus:
     # 20 gold chunks + 10 hard distractors per bucket = 120 total chunks
     for b_idx, bucket in enumerate(BUCKETS):
         for i in range(20):
-            emb = _normalize(centroids[bucket] * 1.4 + rng.normal(scale=0.35, size=cfg.embedding_dim))
+            noise = rng.normal(scale=0.35, size=cfg.embedding_dim)
+            emb = _normalize(centroids[bucket] * 1.4 + noise)
             chunk = DocumentChunk(
                 doc_id=f"DOC-{b_idx + 1}-{i + 1:02d}",
                 bucket=bucket,
@@ -92,7 +93,8 @@ def generate_rag_corpus(config: CorpusConfig | None = None) -> RagCorpus:
             gold_by_bucket[bucket].append(chunk)
 
         for j in range(10):
-            emb = _normalize(centroids[bucket] * 1.35 + rng.normal(scale=0.40, size=cfg.embedding_dim))
+            noise = rng.normal(scale=0.40, size=cfg.embedding_dim)
+            emb = _normalize(centroids[bucket] * 1.35 + noise)
             chunks.append(
                 DocumentChunk(
                     doc_id=f"DIST-{b_idx + 1}-{j + 1:02d}",

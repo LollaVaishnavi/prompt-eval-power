@@ -173,8 +173,12 @@ def build_parser() -> argparse.ArgumentParser:
     sub = parser.add_subparsers(dest="command", required=True)
 
     p_gate = sub.add_parser("gate", help="Run paired McNemar + power gate on RAG prompt templates.")
-    p_gate.add_argument("--baseline", choices=sorted(PROMPT_TEMPLATES), default="v1_baseline_grounded")
-    p_gate.add_argument("--candidate", choices=sorted(PROMPT_TEMPLATES), default="v2_concise_rewrite")
+    p_gate.add_argument(
+        "--baseline", choices=sorted(PROMPT_TEMPLATES), default="v1_baseline_grounded"
+    )
+    p_gate.add_argument(
+        "--candidate", choices=sorted(PROMPT_TEMPLATES), default="v2_concise_rewrite"
+    )
     p_gate.add_argument("--sample-size", type=int, default=300)
     p_gate.add_argument("--corpus-size", type=int, default=300)
     p_gate.add_argument("--seed", type=int, default=20260511)
