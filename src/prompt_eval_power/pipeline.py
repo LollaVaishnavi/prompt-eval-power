@@ -189,7 +189,14 @@ class RagStateGraph:
                 f"Unknown prompt '{prompt_name}'. Available: {sorted(PROMPT_TEMPLATES)}"
             )
         prompt = PROMPT_TEMPLATES[prompt_name]
-        queries = self.corpus.queries[:limit] if limit is not None else self.corpus.queries
+        if limit is not None:
+            if limit < 1 or limit > len(self.corpus.queries):
+                raise ValueError(
+                    f"limit must be in [1, {len(self.corpus.queries)}], got {limit}"
+                )
+            queries = self.corpus.queries[:limit]
+        else:
+            queries = self.corpus.queries
         outcomes: list[QueryOutcome] = []
         for q in queries:
             raw = self.retrieve_node(q, top_k=5)
