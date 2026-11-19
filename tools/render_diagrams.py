@@ -1,0 +1,95 @@
+"""Render the prompt-eval-power architecture diagram to a self-contained SVG."""
+
+from __future__ import annotations
+
+import json
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent.parent
+SVG_PATH = ROOT / "docs" / "evidence" / "architecture.svg"
+MANIFEST_PATH = ROOT / "docs" / "evidence" / "diagram_manifest.json"
+
+SVG_CONTENT = """<svg xmlns="http://www.w3.org/2000/svg" width="940" height="330" viewBox="0 0 940 330">
+  <rect x="0" y="0" width="940" height="330" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5" />
+  <text x="470" y="34" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="700" fill="#0f172a">prompt-eval-power: Statistical Regression Gate Architecture</text>
+
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#475569" />
+    </marker>
+  </defs>
+
+  <rect x="28" y="68" width="184" height="106" rx="8" fill="#ffffff" stroke="#1d4ed8" stroke-width="2" />
+  <text x="120" y="95" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="700" fill="#1e3a8a">1. Stratified Corpus</text>
+  <text x="120" y="116" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#334155">300 Labeled Queries</text>
+  <text x="120" y="134" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#334155">120 Vector Chunks</text>
+  <text x="120" y="152" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#475569">(corpus.py)</text>
+
+  <line x1="212" y1="121" x2="254" y2="121" stroke="#475569" stroke-width="2" marker-end="url(#arrow)" />
+
+  <rect x="258" y="68" width="204" height="106" rx="8" fill="#ffffff" stroke="#0f766e" stroke-width="2" />
+  <text x="360" y="95" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="700" fill="#115e59">2. RAG State Graph</text>
+  <text x="360" y="116" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#334155">Retrieve -> Rerank -> Prompt</text>
+  <text x="360" y="134" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#334155">Paired v1 vs v2/v3 Outcomes</text>
+  <text x="360" y="152" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#475569">(pipeline.py)</text>
+
+  <line x1="462" y1="121" x2="504" y2="121" stroke="#475569" stroke-width="2" marker-end="url(#arrow)" />
+
+  <rect x="508" y="68" width="196" height="106" rx="8" fill="#ffffff" stroke="#7c3aed" stroke-width="2" />
+  <text x="606" y="95" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="700" fill="#5b21b6">3. Power and Stats</text>
+  <text x="606" y="116" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#334155">Exact Paired McNemar</text>
+  <text x="606" y="134" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#334155">Clopper-Pearson + MDE</text>
+  <text x="606" y="152" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#475569">(stats.py, power.py)</text>
+
+  <line x1="704" y1="121" x2="742" y2="121" stroke="#475569" stroke-width="2" marker-end="url(#arrow)" />
+
+  <rect x="746" y="68" width="166" height="106" rx="8" fill="#fef2f2" stroke="#991b1b" stroke-width="2" />
+  <text x="829" y="95" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="700" fill="#991b1b">4. Three-Way Gate</text>
+  <text x="829" y="116" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#334155">Exit 0: Powered PASS</text>
+  <text x="829" y="134" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#991b1b">Exit 2: REGRESSION</text>
+  <text x="829" y="152" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#92400e">Exit 3: UNDERPOWERED</text>
+
+  <line x1="606" y1="174" x2="606" y2="216" stroke="#475569" stroke-width="2" marker-end="url(#arrow)" />
+  <line x1="829" y1="174" x2="829" y2="216" stroke="#475569" stroke-width="2" marker-end="url(#arrow)" />
+
+  <rect x="478" y="220" width="240" height="84" rx="8" fill="#ffffff" stroke="#b45309" stroke-width="2" />
+  <text x="598" y="246" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="700" fill="#92400e">5. Bucket Stratification</text>
+  <text x="598" y="266" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#334155">Lookup / Multi-Hop / Refusal / Edge</text>
+  <text x="598" y="284" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#475569">Catches Hidden Slice Regressions</text>
+
+  <rect x="746" y="220" width="166" height="84" rx="8" fill="#f0fdf4" stroke="#166534" stroke-width="2" />
+  <text x="829" y="246" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="700" fill="#166534">6. Machine Receipts</text>
+  <text x="829" y="266" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#334155">metrics.json + Anchors</text>
+  <text x="829" y="284" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#475569">(tools/check_numbers.py)</text>
+
+  <rect x="28" y="220" width="424" height="84" rx="8" fill="#fffbeb" stroke="#d97706" stroke-width="1.5" stroke-dasharray="5,4" />
+  <text x="44" y="245" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="700" fill="#92400e">Offline Boundary (ADR-005)</text>
+  <text x="44" y="265" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#334155">Zero API keys, zero network calls, exact finite-sample math.</text>
+  <text x="44" y="283" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#334155">Cannot measure live LLM temperature variance or judge bias.</text>
+</svg>
+"""
+
+
+def main() -> int:
+    SVG_PATH.parent.mkdir(parents=True, exist_ok=True)
+    SVG_PATH.write_text(SVG_CONTENT.strip() + "\n", encoding="utf-8")
+    MANIFEST_PATH.write_text(
+        json.dumps(
+            {
+                "svg": str(SVG_PATH.relative_to(ROOT)),
+                "width": 940,
+                "height": 330,
+                "background": "#f8fafc",
+                "html_labels": False,
+            },
+            indent=2,
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    print(f"render_diagrams: wrote {SVG_PATH}")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

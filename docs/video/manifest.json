@@ -1,0 +1,35 @@
+{
+  "note": "Real captured stdout and wall time for each demo segment.",
+  "segments": [
+    {
+      "title": "1. Small suite (n=30) refuses fake green -> exit 3 UNDERPOWERED",
+      "command": "python3 -m prompt_eval_power.cli gate --baseline v1_baseline_grounded --candidate v2_concise_rewrite --sample-size 30",
+      "exit_code": 3,
+      "duration_sec": 0.437
+    },
+    {
+      "title": "2. Full suite (n=300) catches regression -> exit 2 REJECT",
+      "command": "python3 -m prompt_eval_power.cli gate --baseline v1_baseline_grounded --candidate v2_concise_rewrite --sample-size 300",
+      "exit_code": 2,
+      "duration_sec": 0.443
+    },
+    {
+      "title": "3. Powered safe prompt (v3) -> exit 0 PASS",
+      "command": "python3 -m prompt_eval_power.cli gate --baseline v1_baseline_grounded --candidate v3_strict_citation --sample-size 300",
+      "exit_code": 0,
+      "duration_sec": 0.444
+    },
+    {
+      "title": "4. Zero-failure resolution floor (0/30 = 9.5% upper bound)",
+      "command": "python3 -m prompt_eval_power.cli zero-bound --failures 0 --sample-size 30",
+      "exit_code": 0,
+      "duration_sec": 0.419
+    },
+    {
+      "title": "5. Machine-checked receipts verification",
+      "command": "python3 tools/check_numbers.py",
+      "exit_code": 0,
+      "duration_sec": 0.028
+    }
+  ]
+}

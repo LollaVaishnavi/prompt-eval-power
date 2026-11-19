@@ -1,0 +1,26 @@
+{
+  "report_html": "reports/audit_report.html",
+  "badge_verification": {
+    "badge_class": "badge-fail",
+    "fg": "#ffffff",
+    "bg": "#991b1b",
+    "contrast_ratio": 8.31
+  },
+  "screenshots": [
+    {
+      "image": "docs/evidence/report_summary.png",
+      "report": "reports/audit_report.html",
+      "headings": [
+        "small-suite-blindness",
+        "zero-failure-floor"
+      ]
+    },
+    {
+      "image": "docs/evidence/report_audit.png",
+      "report": "reports/audit_report.html",
+      "headings": [
+        "langgraph-prompt-audit"
+      ]
+    }
+  ]
+}
